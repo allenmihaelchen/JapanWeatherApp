@@ -22,11 +22,22 @@ public class Main {
 		PrimaryRegion priObj = new PrimaryRegion();
 		PrimaryArea pri = priObj.fetchData();
 		
-        System.out.println("----------kakakjk");
-        System.out.println(pri.getChannel().getLdweather().getPref().get(3).getTitle());
-		System.out.println(pri.getChannel().getLdweather().getPref().get(0).getCity().get(2).getTitle());
-		System.out.println(pri.getChannel().getLdweather().getPref().get(0).getCity().get(2).getId());
-		System.out.println("----------lalaljk");
+		System.out.println("-------------------------Please Enter a primary area number or 0 to exit-------------------------");
+		for(int i=0;i<pri.getChannel().getLdweather().getPref().size();i++){
+			System.out.print(String.format("%2d%1s%-6s", i+1,"-",pri.getChannel().getLdweather().getPref().get(i).getTitle()));
+//			System.out.print(String.format("%-8s", "-"+pri.getChannel().getLdweather().getPref().get(i).getTitle()));
+			if((i+1)%10==0){
+				System.out.println("");
+			}
+		}
+		System.out.println("");
+		System.out.println("-------E.g. Enter 2 to look up 2-道東's local weather forecasts, Enter 0 (exit the program)-------");
+		System.out.println("");
+		
+		
+//        System.out.println(pri.getChannel().getLdweather().getPref().get(3).getTitle());
+//		System.out.println(pri.getChannel().getLdweather().getPref().get(0).getCity().get(2).getTitle());
+//		System.out.println(pri.getChannel().getLdweather().getPref().get(0).getCity().get(2).getId());
 		
 		
 //		List<Pref> areas = pri.getChannel().getPref();
