@@ -1,4 +1,4 @@
-package weatherDataModel;
+package weatharForecastDto;
 
 import java.util.List;
 

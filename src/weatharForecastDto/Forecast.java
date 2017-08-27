@@ -1,4 +1,4 @@
-package weatherDataModel;
+package weatharForecastDto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

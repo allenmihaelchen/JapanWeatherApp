@@ -1,9 +1,8 @@
-package weatherDataModel;
+package weatharForecastDto;
 
-public class Provider {
-	private String link;
+public class PinPointLocation {
 	private String name;
-	
+	private String link;
 	public String getName() {
 		return name;
 	}
@@ -16,6 +15,6 @@ public class Provider {
 	public void setLink(String link) {
 		this.link = link;
 	}
-
+	
 
 }

@@ -1,4 +1,4 @@
-package weatherDataModel;
+package weatherPrimaryAreaDto;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -8,11 +8,11 @@ public class PrimaryArea {
 	
 	private Channel channel;
 	
+	@XmlElement(name="channel")
 	public Channel getChannel() {
 		return channel;
 	}
 
-	@XmlElement(name="channel")
 	public void setChannel(Channel channel) {
 		this.channel = channel;
 	}

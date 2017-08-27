@@ -1,4 +1,4 @@
-package weatherDataModel;
+package weatharForecastDto;
 
 public class Description {
 	private String text;
