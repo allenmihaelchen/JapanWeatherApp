@@ -22,7 +22,7 @@ import org.apache.http.util.EntityUtils;
 import weatherPrimaryAreaDto.PrimaryArea;
 
 
-public class PrimaryRegion {
+public class PrimaryAreaDao {
 	
 	    String primary_area_XML_URL = "http://weather.livedoor.com/forecast/rss/primary_area.xml";
 	    // The URL which gets the XML with primary area data in it.
