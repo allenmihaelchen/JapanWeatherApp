@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import weatharForecastDto.WeatherEntity;
 
-public class WeatherForecastDao {
+public class ForecastDao {
 	
 	public WeatherEntity fetchForecast(String cityURL){
 		
