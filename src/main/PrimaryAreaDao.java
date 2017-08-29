@@ -6,9 +6,6 @@ import java.io.StringReader;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
 import javax.xml.transform.stream.StreamSource;
 
 import org.apache.http.HttpEntity;
@@ -24,41 +21,41 @@ import weatherPrimaryAreaDto.PrimaryArea;
 
 public class PrimaryAreaDao {
 	
-	    String primary_area_XML_URL = "http://weather.livedoor.com/forecast/rss/primary_area.xml";
 	    // The URL which gets the XML with primary area data in it.
+	    String primary_area_XML_URL = "http://weather.livedoor.com/forecast/rss/primary_area.xml";
 
 		public PrimaryArea fetchData(){
 			
 			CloseableHttpClient httpclient = HttpClients.createDefault();
 			PrimaryArea pri = null;
 			
+			//Establish a http connection with Apache HttpClient 
 	        try (CloseableHttpResponse response = httpclient.execute(new HttpGet(primary_area_XML_URL));){
-	        	//Establish a http connection with Apache HttpClient 
 	            
 	            JAXBContext jaxbContext = JAXBContext.newInstance(PrimaryArea.class);
+	            //Utilize JAXB to do the XML parsing
 	    		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-	    		//Utilize JAXB to do the XML parsing
 	    		
 	    		HttpEntity entity = response.getEntity();
-	    		String content = EntityUtils.toString(entity).replace("ldWeather:source", "source");
 	    		//Convert the response to String variable and replace "ldWeather:source" with "source" that contains no colon.
+	    		String content = EntityUtils.toString(entity).replace("ldWeather:source", "source");
 	    		
-	    		pri = (PrimaryArea) unmarshaller.unmarshal(new StreamSource(new StringReader(content)));
 	    		// Transform the new String variable into a File object for the unmarshaller and unmarshal the XML to convert it into a POJO.
+	    		pri = (PrimaryArea) unmarshaller.unmarshal(new StreamSource(new StringReader(content)));
 	    		
-	    		httpclient.close();
 	    		//Close the http connection
+	    		httpclient.close();
 	    		
 	        }catch(ClientProtocolException e){
 	        	e.printStackTrace();
-	        }catch(IOException e){
+	        }catch(JAXBException e){
 	        	e.printStackTrace();
-	        }catch (JAXBException e) {
+	        }catch (IOException e) {
 				e.printStackTrace();
 			} 
 			
+	        //Return the object with data model PrimaryArea format
 			return pri;
-			//Return the object with data model PrimaryArea format
 		}
 
 }
