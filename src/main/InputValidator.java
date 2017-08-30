@@ -45,11 +45,6 @@ public class InputValidator {
 				}while(keepLooping==true || (inputNum<0 || inputNum>count));
 				System.out.println("");
 		
-				//Close the Scanner
-				//userInput.close();
-				
-				inputNum = inputNum-1;
-		
 		return inputNum;
 		
 	}
