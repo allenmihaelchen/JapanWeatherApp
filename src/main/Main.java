@@ -1,7 +1,11 @@
 package main;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 import resultOutput.PrintConsole;
+import resultOutput.PrintFile;
 import weatharForecastDto.WeatherEntity;
 import weatherPrimaryAreaDto.PrimaryArea;
 
@@ -86,8 +90,6 @@ public class Main {
 		System.out.println("");
 		System.out.println("---");
 		
-		//Close the scanner
-		userInput.close();
 
 		//Get the city code of the city selected
 		String selectedCityCode = pri.getChannel().getLdweather().getPref().get(primaryAreaNum).getCity().get(selectedCityNum).getId();
@@ -102,11 +104,29 @@ public class Main {
 
 		
 		if(selectedFormat==1){
+			//Close this scanner since it wouldn't be used anymore here
+			userInput.close();
+			
 			PrintConsole printConsole = new PrintConsole();
+			
+			//Print out the weather forecast to the console
 			printConsole.printOut(obj);
 			
 		}else if(selectedFormat==2){
-			System.out.println("You selected to output the forecase in txt format.");
+			
+			System.out.println("");
+			System.out.println("------------------------------Please Enter the output Path------------------------------");
+			System.out.println("-------------------E.g. \"/Users/[your user name]/Desktop/\" for Mac OS-------------------");
+			System.out.println("--------------------E.g. \"c:\\Users\\[user name]\\Desktop\\\" for Windows--------------------");
+			System.out.println("");
+			
+			String path = inputValidator.PathValidator(userInput);
+			
+			PrintFile printFile = new PrintFile();
+			printFile.printOut(path,obj);
+			
+			//Close the scanner after getting the user input path and print out the file
+			userInput.close();
 		}
 				
     }

@@ -1,5 +1,6 @@
 package main;
 
+import java.io.File;
 import java.util.Scanner;
 
 public class InputValidator {
@@ -47,6 +48,35 @@ public class InputValidator {
 		
 		return inputNum;
 		
+	}
+	
+	
+	public String PathValidator(Scanner scan2){
+		
+		//For controlling the looping
+		boolean keepLooping = true;
+		
+		//Initiate the inputPath to be overwrote by the user input
+		String inputPath="";
+		
+						do{
+							System.out.print("Please enter path for outputting the weather forecase file here:");
+							
+							File file = new File((inputPath=(String)scan2.next()));
+							
+							//Validate if the user input is a valid directory path
+							if(file.isDirectory()){
+								keepLooping = false;
+							}else{
+								System.out.println("\""+inputPath+"\""+" you entered is not a valid path, please try again.");
+								System.out.println("");
+								keepLooping = true;
+							}
+							
+						}while(keepLooping == true);
+						System.out.println("");
+		
+		return inputPath;
 	}
 
 }
