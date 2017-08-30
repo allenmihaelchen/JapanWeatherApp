@@ -40,8 +40,31 @@ public class PrintFile {
 		
 				
 		try ( PrintWriter out = new PrintWriter( file ) ){	
-			out.println(obj.getTitle() + " " + obj.getDescription().getPublicTime());
+			
+			out.println(obj.getLocation().getArea()+" "+obj.getTitle() + " " + obj.getDescription().getPublicTime());
+			out.println("Source: "+obj.getLink()+"; "+"From: "+obj.getCopyright().getProvider().get(0).getName()+" "+obj.getCopyright().getProvider().get(0).getLink());
+			out.println("==============================================");
+			
+			for(int i=0;i<obj.getForecasts().size();i++){
+				out.println(obj.getForecasts().get(i).getDate() +" "+obj.getForecasts().get(i).getDateLabel()+" "+obj.getForecasts().get(i).getTelop());
+			}
+			
+			out.println();
+			out.println("Weather Description");
+			out.println("----------------------------------------------");
 			out.println(obj.getDescription().getText());
+			
+			out.println();
+			out.println();
+			out.println("The weather of other related places");
+			out.println("----------------------------------------------");
+			
+			for(int i=0;i<obj.getPinpointLocations().size();i++){
+				out.println(obj.getPinpointLocations().get(i).getName());
+				out.println(obj.getPinpointLocations().get(i).getLink());
+				out.println();	
+			}
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
